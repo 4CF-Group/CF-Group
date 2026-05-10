@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         :root {
-            --primary: #1B3022; /* Deep Forest Green */
+            --primary: #0A192F; /* Deep Navy from images */
             --accent: #C5A059;  /* Gold */
+            --silver: #E0E0E0;
             --text-light: #F4F1EA;
             --text-dark: #2C2C2C;
             --bg-light: #FFFFFF;
-            --section-alt: #F9F8F5;
         }
 
-        * { margin: 0; padding: 0; box-word: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', sans-serif; 
             color: var(--text-dark); 
@@ -26,83 +26,94 @@
         }
 
         h1, h2, h3, .serif { 
-            font-family: 'Cormorant+Garamond', serif; 
+            font-family: 'Cormorant Garamond', serif; 
             font-weight: 700;
         }
 
         /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(27, 48, 34, 0.95);
+            background: rgba(10, 25, 47, 0.9);
             backdrop-filter: blur(10px);
-            padding: 20px 0; border-bottom: 1px solid var(--accent);
+            padding: 20px 0; border-bottom: 1px solid rgba(197, 160, 89, 0.3);
         }
         .nav-container {
-            max-width: 1200px; margin: 0 auto; display: flex;
+            max-width: 1400px; margin: 0 auto; display: flex;
             justify-content: space-between; align-items: center; padding: 0 40px;
         }
-        .logo { color: var(--accent); font-size: 1.5rem; text-decoration: none; letter-spacing: 2px; }
-        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 30px; font-size: 0.9rem; transition: 0.3s; }
+        .logo { color: var(--accent); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; }
+        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 30px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
-        /* Hero Section */
+        /* Hero Section - Using high-tech image style */
         .hero {
-            height: 100vh; background: linear-gradient(rgba(27, 48, 34, 0.8), rgba(27, 48, 34, 0.8)), 
-            url('https://images.unsplash.com/photo-1579165466541-7483fe5009d0?auto=format&fit=crop&q=80') center/cover;
+            height: 100vh; 
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)), 
+            url('/uploads/hero_visual.png') center/cover;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: var(--text-light); padding: 0 20px;
         }
-        .hero h1 { font-size: 4.5rem; margin-bottom: 20px; color: var(--accent); }
-        .hero p { font-size: 1.2rem; max-width: 800px; margin-bottom: 40px; font-weight: 300; }
-        .hero-stats { display: flex; gap: 40px; margin-top: 20px; }
-        .stat-item { border-left: 2px solid var(--accent); padding-left: 20px; text-align: left; }
-        .stat-num { font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
-        .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: 4rem; margin-bottom: 20px; color: #FFF; letter-spacing: 3px; }
+        .hero p { font-size: 1.3rem; max-width: 900px; margin-bottom: 40px; font-weight: 300; color: var(--silver); }
+        .btn-gold { 
+            padding: 15px 40px; border: 1px solid var(--accent); color: var(--accent); 
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; transition: 0.4s;
+        }
+        .btn-gold:hover { background: var(--accent); color: var(--primary); }
+
+        /* Stats Bar */
+        .stats-bar { background: var(--primary); padding: 40px 0; border-bottom: 1px solid var(--accent); }
+        .stats-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; text-align: center; color: var(--accent); }
+        .stat-box h2 { font-size: 2.5rem; margin-bottom: 5px; }
+        .stat-box p { font-size: 0.7rem; text-transform: uppercase; color: var(--silver); }
 
         /* Sections */
-        section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 3rem; color: var(--primary); margin-bottom: 15px; }
-        .section-title .line { width: 60px; height: 3px; background: var(--accent); margin: 0 auto; }
+        section { padding: 120px 40px; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 3.5rem; color: var(--primary); margin-bottom: 10px; }
+        .section-header .sub { font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; color: var(--accent); }
 
-        /* About & Core Competencies */
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .card { padding: 40px; background: var(--section-alt); border-top: 4px solid var(--accent); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .card h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.5rem; }
-
-        /* Services & Products Grid */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        .service-box, .product-box { 
-            position: relative; overflow: hidden; height: 400px; 
-            background-color: var(--primary); color: white; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px;
+        /* Product Lineup - Visual Grid */
+        .product-showcase { 
+            width: 100%; height: 600px; 
+            background: url('/uploads/product_lineup.png') center/contain no-repeat;
+            margin-bottom: 60px;
         }
-        .service-box h3, .product-box h3 { font-size: 1.8rem; margin-bottom: 10px; color: var(--accent); }
-        
-        /* ODF Tech Section */
-        .tech-section { background: var(--primary); color: var(--text-light); border-radius: 20px; padding: 60px; display: flex; align-items: center; gap: 60px; margin-top: 40px; }
-        .tech-content h2 { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
-        .tech-visual { flex: 1; text-align: center; }
-        .tech-spec { font-size: 4rem; color: var(--accent); font-weight: 700; display: block; }
 
-        /* Process Steps */
-        .process-steps { display: flex; justify-content: space-between; position: relative; margin-top: 40px; flex-wrap: wrap; gap: 20px; }
-        .step { flex: 1; text-align: center; min-width: 140px; }
-        .step-num { width: 50px; height: 50px; border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: var(--accent); font-weight: 700; }
+        /* Sector Cards */
+        .sector-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        .sector-card { background: #FFF; border: 1px solid #EEE; padding: 0; overflow: hidden; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .sector-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .sector-img { height: 250px; background-size: cover; background-position: center; }
+        .sector-content { padding: 40px; }
+        .sector-content h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--primary); }
+
+        /* Contact Section - Clean White Style */
+        .contact-container { 
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; 
+            background: #F9F9F9; padding: 80px; border-radius: 4px; 
+        }
+        .contact-info h3 { font-size: 2rem; margin-bottom: 30px; }
+        .info-group { margin-bottom: 30px; }
+        .info-group h4 { color: var(--accent); margin-bottom: 5px; }
+        
+        .contact-form input, .contact-form select, .contact-form textarea {
+            width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #DDD; border-radius: 4px;
+        }
+        .submit-btn { 
+            width: 100%; padding: 20px; background: var(--primary); color: white; border: none; 
+            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
+        }
+        .submit-btn:hover { background: var(--accent); }
 
         /* Footer */
-        footer { background: var(--primary); color: var(--text-light); padding: 80px 40px 40px; border-top: 1px solid var(--accent); }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #888; }
+        footer { background: var(--primary); color: white; padding: 100px 40px 40px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; margin-top: 60px; text-align: center; font-size: 0.8rem; color: #666; }
 
-        /* Badges */
-        .badges { display: flex; justify-content: center; gap: 30px; margin-top: 40px; opacity: 0.7; }
-        .badge-text { font-size: 0.7rem; color: var(--accent); border: 1px solid var(--accent); padding: 5px 10px; border-radius: 4px; }
-
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+            .contact-container { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
-            .hero-stats { flex-direction: column; gap: 20px; }
-            .tech-section { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -112,180 +123,135 @@
         <div class="nav-container">
             <a href="#" class="logo serif">4CF GROUP</a>
             <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
+                <a href="#about">Innovation</a>
                 <a href="#products">Products</a>
-                <a href="#technology">Technology</a>
+                <a href="#sectors">Sectors</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1 data-aos="fade-up">GLOBAL MEDICAL EXCELLENCE</h1>
-        <p data-aos="fade-up" data-aos-delay="200">Shaping the future of health with world-leading ODF technology and pharmaceutical precision.</p>
-        <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-            <div class="stat-item">
-                <span class="stat-num">180K+</span>
-                <span class="stat-label">ODF Films per Day</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">600%</span>
-                <span class="stat-label">Glutathione Purity Up</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">#1</span>
-                <span class="stat-label">Korea ODF (3 Years)</span>
-            </div>
-        </div>
-        <div class="badges" data-aos="fade-in" data-aos-delay="600">
-            <span class="badge-text">cGMP Certified</span>
-            <span class="badge-text">ISO 13485</span>
-            <span class="badge-text">HACCP</span>
-            <span class="badge-text">Non-GMO</span>
-        </div>
-    </header>
-
-    <section id="about">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Our Core Excellence</h2>
-            <div class="line"></div>
-        </div>
-        <div class="grid-4">
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <h3>Global R&D</h3>
-                <p>Leading the way in pharmaceutical research and development across three continents.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <h3>Joint Patents</h3>
-                <p>Proprietary technology developed through strategic global partnerships.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <h3>Quality Standards</h3>
-                <p>Adhering to the most rigorous international quality benchmarks.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="400">
-                <h3>Science Verified</h3>
-                <p>Evidence-based solutions backed by peer-reviewed clinical data.</p>
-            </div>
-        </div>
+    <section class="hero" style="padding:0; max-width: 100%;">
+        <h1 data-aos="fade-up">ADVANCING GLOBAL HEALTH<br>THROUGH INNOVATION</h1>
+        <p data-aos="fade-up" data-aos-delay="200">4CF Group pioneers cutting-edge drug delivery solutions, delivering precision, efficacy, and accessibility with Oral Dissolved Film (ODF) technology.</p>
+        <a href="#products" class="btn-gold" data-aos="fade-up" data-aos-delay="400">Discover ODF Technology</a>
     </section>
 
-    <section id="services" style="background-color: var(--section-alt);">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Specialized Services</h2>
-            <div class="line"></div>
-        </div>
-        <div class="grid-3">
-            <div class="service-box" data-aos="zoom-in">
-                <h3>OEM · ODM</h3>
-                <p>End-to-end manufacturing solutions for global brands.</p>
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-box" data-aos="fade-up">
+                <h2>180K+</h2>
+                <p>ODF Films Per Day</p>
             </div>
-            <div class="service-box" data-aos="zoom-in" data-aos-delay="100">
-                <h3>Private Label</h3>
-                <p>Customized branding and formulation for exclusive lines.</p>
+            <div class="stat-box" data-aos="fade-up" data-aos-delay="100">
+                <h2>600%</h2>
+                <p>Glutathione Purity Up</p>
             </div>
-            <div class="service-box" data-aos="zoom-in" data-aos-delay="200">
-                <h3>Medical Export/Import</h3>
-                <p>Seamless global distribution of advanced medical products.</p>
-            </div>
-            <div class="service-box" data-aos="zoom-in" data-aos-delay="300">
-                <h3>Global Regulatory</h3>
-                <p>Expert consulting for GMP, ISO, and international compliance.</p>
-            </div>
-            <div class="service-box" data-aos="zoom-in" data-aos-delay="400">
-                <h3>Clinical Papers</h3>
-                <p>Publishing scientific evidence for market authorization.</p>
-            </div>
-            <div class="service-box" data-aos="zoom-in" data-aos-delay="500">
-                <h3>Supply Chain</h3>
-                <p>Integrated logistics for high-value raw materials.</p>
+            <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
+                <h2>#1</h2>
+                <p>Korea ODF (3 Years)</p>
             </div>
         </div>
-    </section>
+    </div>
 
     <section id="products">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Flagship Product Lineup</h2>
-            <div class="line"></div>
+        <div class="section-header" data-aos="fade-up">
+            <span class="sub">Premium Formula. Superior Delivery.</span>
+            <h2>ADVANCED ORAL DISSOLVED FILMS</h2>
         </div>
-        <div class="grid-3">
-            <div class="product-box" style="background: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80') center/cover;" data-aos="fade-up">
-                <h3>Glutathione ODF</h3>
+        <div class="product-showcase" data-aos="zoom-in"></div>
+        <div class="grid-4" style="text-align: center; color: var(--accent); font-size: 0.8rem;">
+            <div>FAST DISSOLVING</div>
+            <div>MAXIMUM ABSORPTION</div>
+            <div>CLINICALLY FORMULATED</div>
+            <div>PREMIUM INGREDIENTS</div>
+        </div>
+    </section>
+
+    <section id="sectors" style="background: #F4F4F4; max-width: 100%;">
+        <div class="section-header" data-aos="fade-up">
+            <span class="sub">Global Fulfillment & Reliability</span>
+            <h2>BUSINESS SECTORS</h2>
+        </div>
+        <div class="sector-grid" style="max-width: 1400px; margin: 0 auto;">
+            <div class="sector-card" data-aos="fade-right">
+                <div class="sector-img" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80');"></div>
+                <div class="sector-content">
+                    <h3>Health Food OEM/ODM</h3>
+                    <p>Advanced contract manufacturing for supplements, powders, and beverages. GMP-certified facility ensuring innovation and quality.</p>
+                </div>
             </div>
-            <div class="product-box" style="background: url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80') center/cover;" data-aos="fade-up" data-aos-delay="100">
-                <h3>Salmon DNA</h3>
+            <div class="sector-card" data-aos="fade-up">
+                <div class="sector-img" style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&q=80');"></div>
+                <div class="sector-content">
+                    <h3>Regulatory Consulting</h3>
+                    <p>Expert guidance for global compliance, product registration, and certifications. Navigating market entry with confidence.</p>
+                </div>
             </div>
-            <div class="product-box" style="background: url('https://images.unsplash.com/photo-1550577624-42c7cf5d8d4d?auto=format&fit=crop&q=80') center/cover;" data-aos="fade-up" data-aos-delay="200">
-                <h3>Red Ginseng ODF</h3>
-            </div>
-            <div class="product-box" style="background: url('https://images.unsplash.com/photo-1540348922524-7583fe5009d0?auto=format&fit=crop&q=80') center/cover;" data-aos="fade-up" data-aos-delay="300">
-                <h3>Collagen Matrix</h3>
-            </div>
-            <div class="product-box" style="background: url('https://images.unsplash.com/photo-1563213126-a4273aed2016?auto=format&fit=crop&q=80') center/cover;" data-aos="fade-up" data-aos-delay="400">
-                <h3>Curcumin Film</h3>
-            </div>
-            <div class="product-box" style="background: url('https://images.unsplash.com/photo-1594498653385-d5172b532c00?auto=format&fit=crop&q=80') center/cover;" data-aos="fade-up" data-aos-delay="500">
-                <h3>CBD Relief Film</h3>
+            <div class="sector-card" data-aos="fade-left">
+                <div class="sector-img" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80');"></div>
+                <div class="sector-content">
+                    <h3>Global Trading</h3>
+                    <p>Seamless end-to-end supply chain management. Efficient global sourcing and distribution for health products.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="technology">
-        <div class="tech-section" data-aos="flip-up">
-            <div class="tech-content">
-                <h2>ODF Disruptive Technology</h2>
-                <p>Orally Dissolving Film (ODF) bypasses the first-pass metabolism, delivering active ingredients directly into the systemic circulation.</p>
-                <ul style="margin-top: 20px; list-style: none;">
-                    <li>✓ Sublingual absorption enhancement</li>
-                    <li>✓ Precise dosing technology</li>
-                    <li>✓ Stability-optimized matrix</li>
-                </ul>
+    <section id="contact">
+        <div class="contact-container" data-aos="fade-up">
+            <div class="contact-info">
+                <h3 class="serif">YOUR VISION,<br>OUR MISSION</h3>
+                <div class="info-group">
+                    <h4>General Inquiry</h4>
+                    <p>info@4cfgroup.com</p>
+                </div>
+                <div class="info-group">
+                    <h4>Business Sales</h4>
+                    <p>sales@4cfgroup.com</p>
+                </div>
+                <div class="info-group">
+                    <h4>Global Offices</h4>
+                    <p>Cheonan, KR | Yongin, KR<br>California, USA</p>
+                </div>
             </div>
-            <div class="tech-visual">
-                <span class="tech-spec">100X</span>
-                <p style="text-transform: uppercase; letter-spacing: 2px;">Bio-availability Enhancement</p>
+            <div class="contact-form">
+                <input type="text" placeholder="Your Name">
+                <input type="email" placeholder="Email Address">
+                <input type="text" placeholder="Company Name">
+                <select>
+                    <option>Select Subject</option>
+                    <option>OEM / ODM Inquiry</option>
+                    <option>Regulatory Consulting</option>
+                    <option>Global Trading</option>
+                </select>
+                <textarea rows="5" placeholder="Message"></textarea>
+                <button class="submit-btn">Submit Request</button>
             </div>
         </div>
     </section>
 
-    <section id="process">
-        <div class="section-title" data-aos="fade-up">
-            <h2>7-Step OEM/ODM Process</h2>
-            <div class="line"></div>
-        </div>
-        <div class="process-steps">
-            <div class="step" data-aos="fade-right"><div class="step-num">01</div><p>Consulting</p></div>
-            <div class="step" data-aos="fade-right" data-aos-delay="100"><div class="step-num">02</div><p>R&D Plan</p></div>
-            <div class="step" data-aos="fade-right" data-aos-delay="200"><div class="step-num">03</div><p>Formulation</p></div>
-            <div class="step" data-aos="fade-right" data-aos-delay="300"><div class="step-num">04</div><p>Samples</p></div>
-            <div class="step" data-aos="fade-right" data-aos-delay="400"><div class="step-num">05</div><p>Production</p></div>
-            <div class="step" data-aos="fade-right" data-aos-delay="500"><div class="step-num">06</div><p>QC/QA</p></div>
-            <div class="step" data-aos="fade-right" data-aos-delay="600"><div class="step-num">07</div><p>Delivery</p></div>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="footer-content">
+    <footer>
+        <div class="footer-grid">
             <div>
-                <h3 class="serif" style="color: var(--accent); margin-bottom: 20px;">4CF GROUP</h3>
-                <p>The Global Leader in Orally Dissolving Film Technology.</p>
+                <h2 class="serif" style="color: var(--accent); margin-bottom: 20px;">4CF GROUP</h2>
+                <p>Pioneering the future of global health through innovative drug delivery solutions.</p>
             </div>
             <div>
-                <h4 style="margin-bottom: 15px;">Global Presence</h4>
-                <p>Cheonan, KR | Yongin, KR<br>California, USA</p>
+                <h4>Explore</h4>
+                <p>Innovation<br>Pipeline<br>Products<br>About</p>
             </div>
             <div>
-                <h4 style="margin-bottom: 15px;">Contact Us</h4>
-                <p>info@4cfgroup.com<br>info@goldenprimeusa.com</p>
+                <h4>Legal</h4>
+                <p>Privacy Policy<br>Terms of Use<br>Sitemap</p>
             </div>
             <div>
-                <h4 style="margin-bottom: 15px;">Certifications</h4>
-                <p>cGMP | HACCP | Non-GMO<br>ISO 13485 | K-GMP</p>
+                <h4>Social</h4>
+                <p>LinkedIn<br>Twitter<br>Instagram</p>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 4CF Group. All Rights Reserved. Shaping the future of medical innovation.
+            &copy; 2026 4CF Group. All Rights Reserved.
         </div>
     </footer>
 
@@ -293,8 +259,7 @@
     <script>
         AOS.init({
             duration: 1000,
-            once: true,
-            offset: 200
+            once: true
         });
     </script>
 </body>
